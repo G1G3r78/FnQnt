@@ -8,8 +8,8 @@ export const NAV_ITEMS = [
 export const INVESTMENT_GOALS = [
     { value: 'Growth', label: 'Growth' },
     { value: 'Income', label: 'Income' },
-    { value: 'Balanced', title: 'Balanced' },
-    { value: 'Conservative', title: 'Conservative' },
+    { value: 'Balanced', label: 'Balanced' },
+    { value: 'Conservative', label: 'Conservative' },
 ];
 
 export const RISK_TOLERANCE_OPTIONS = [

@@ -4,7 +4,7 @@ const Layout = (
     {children}: {children: React.ReactNode}
 ) => {
     return (
-        <main className="min_h-screen text-green-400">
+        <main className="min_h-screen text-gray-400">
             <Header/>
             <div className="container">
                 {children}
