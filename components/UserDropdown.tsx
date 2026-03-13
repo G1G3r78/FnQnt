@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { LogOut } from "lucide-react";
 import NavItems from "./NavItems";
+import { signOut } from "@/lib/actions/auth.actions";
 
 export {
   DropdownMenu,
@@ -25,18 +26,13 @@ export {
   DropdownMenuSubContent,
 } from "@/components/ui/dropdown-menu";
 
-const UserDropdown = () => {
+const UserDropdown = ({user}: {user: User}) => {
 
     const router = useRouter();
     
     const handleSignOut = async () => {
+        await signOut();
         router.push("/sign-in");
-    }
-
-    // static for now
-    const user = {
-        name: "John",
-        email: "john67@g.com"
     }
 
     return (

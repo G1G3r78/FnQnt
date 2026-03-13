@@ -4,10 +4,15 @@ import FooterLink from "@/components/forms/FooterLink";
 import InputField from "@/components/forms/InputField";
 import SelectField from "@/components/forms/SelectField";
 import { Button } from "@/components/ui/button";
+import { signUpWithEmail } from "@/lib/actions/auth.actions";
 import { INVESTMENT_GOALS, PREFERRED_INDUSTRIES, RISK_TOLERANCE_OPTIONS } from "@/lib/constants";
+import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 const SignUp = () => {
+
+    const router = useRouter();
 
     const {
         register,
@@ -17,23 +22,27 @@ const SignUp = () => {
     } = useForm<SignUpFormData>(
         {
             defaultValues: {
-                fullname: '',
+                fullName: '',
                 email: '',
                 password: '',
-                country: '',
+                country: 'RU',
                 investmentGoals: "Growth",
                 riskTolerance: "Medium",
                 preferredIndustry: "Technology"
             },
             mode: "onBlur"
-        }
+        },
     )
 
     const onSubmit = async (data: SignUpFormData) => {
         try {
-            console.log(data);
-        } catch (e) {
-            console.log(e);
+            const result = await signUpWithEmail(data);
+            if (result.success) router.push('/');
+        } catch (error) {
+            console.log(error);
+            toast.error("Sugn up failed", {
+                description: error instanceof Error ? error.message : "Failed to create an account"
+            })
         }
     };
 
@@ -43,7 +52,7 @@ const SignUp = () => {
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                 <InputField
-                    name="fullname"
+                    name="fullName"
                     label="full name"
                     placeholder="Jefrey Epstein"
                     register={register}

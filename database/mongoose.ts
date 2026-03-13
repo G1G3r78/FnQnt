@@ -12,7 +12,7 @@ declare global {
 let cached = global.mongooseCache;
 if (!cached) cached = global.mongooseCache = {conn: null, promise: null};
 
-export const connectToDatabase = async  () => {
+export const connectToDatabase = async () => {
     if (!MONGODB_URI) throw new Error("MONGODB_URI ain't set");
     if (cached.conn) return cached.conn;
     if (!cached.promise) cached.promise = mongoose.connect(
@@ -25,4 +25,6 @@ export const connectToDatabase = async  () => {
         throw err;
     }
     console.log("Connected to DB");
+
+    return cached.conn;
 }
