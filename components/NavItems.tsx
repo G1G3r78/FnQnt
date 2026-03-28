@@ -1,3 +1,4 @@
+// components/NavItems.tsx
 'use client'
 
 import {NAV_ITEMS} from "@/lib/constants";
@@ -10,7 +11,6 @@ const NavItems = ({initialStocks}: { initialStocks: StockWithWatchlistStatus[]})
 
     const isActive = (path: string) => {
         if (path === '/') return pathname === '/';
-
         return pathname.startsWith(path);
     }
 
